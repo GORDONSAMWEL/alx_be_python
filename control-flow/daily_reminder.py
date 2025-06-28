@@ -10,25 +10,20 @@ if time_bound not in ("yes", "no"):
     print("Invalid input for time-bound. Please enter 'yes' or 'no'.")
     exit(1)
 
-# Process with match-case on priority
+# Use match-case to generate output directly
 match priority:
     case "high":
-        message = f"Reminder: '{task}' is a high priority task"
+        if time_bound == "yes":
+            print(f"Reminder: '{task}' is a high priority task that requires immediate attention today!")
+        else:
+            print(f"Reminder: '{task}' is a high priority task.")
     case "medium":
-        message = f"Reminder: '{task}' is a medium priority task"
+        if time_bound == "yes":
+            print(f"Reminder: '{task}' is a medium priority task that requires immediate attention today!")
+        else:
+            print(f"Reminder: '{task}' is a medium priority task.")
     case "low":
-        message = f"Note: '{task}' is a low priority task. Consider completing it when you have free time."
+        print(f"Note: '{task}' is a low priority task. Consider completing it when you have free time.")
     case _:
         print("Invalid priority. Please enter high, medium, or low.")
-        exit(1)
-
-# Add time-bound emphasis if applicable and priority is high or medium
-if priority in ("high", "medium"):
-    if time_bound == "yes":
-        message += " that requires immediate attention today!"
-    else:
-        message += "."
-
-# Print the final reminder
-print(message)
 
